@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Music Player</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="container">
+            <img src="./svg/menu.svg">
+            <input type="checkbox" id="check-menu"> 
+            <div class="playlist">
+        </div>
+
+            
+        </div>
+        <div class="player">
+            <audio controls id="song">
+                <source src="audio/Orion.mp3" type="audio/mpeg">
+            </audio>
+            <input type="range" value="0" id="song-progress" class="">
+            <div class="controls flexbox">
+                <div>
+                    <img src="./svg/skip-to-previous.svg" alt="" id="skip-prev">
+                </div>
+                <div>
+                    <img src="./svg/play.svg" alt="" id="play">
+                </div>
+                <div>
+                    <img src="./svg/skip-to-next.svg" alt="" id="skip-next">
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
