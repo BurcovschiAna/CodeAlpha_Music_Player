@@ -20,7 +20,14 @@
             <audio controls id="song">
                 <source src="audio/Orion.mp3" type="audio/mpeg">
             </audio>
-            <input type="range" value="0" id="song-progress" class="">
+            <div class="song-slider">
+                <input type="range" value="0" id="song-progress" class="">
+                <div class="flexbox">
+                    <span class="song-start">00:00</span>
+                    <span class="song-duration">00:00</span>
+                </div>
+            </div>
+            
             <div class="controls flexbox">
                 <div>
                     <img src="./svg/skip-to-previous.svg" alt="" id="skip-prev">
@@ -33,6 +40,11 @@
                 </div>
             </div>
         </div>
+    </div>
+
+    <div class="play-btn">
+        <div></div>
+        <div></div>
     </div>
     <script src="script.js"></script>
 </body>
