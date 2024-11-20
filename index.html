@@ -7,45 +7,82 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="wrapper">
-        <div class="container">
-            <img src="./svg/menu.svg">
-            <input type="checkbox" id="check-menu"> 
-            <div class="playlist">
-        </div>
-
-            
+    <div class="wrapper center">
+    <div class="container flexbox">
+        <div class="playlist">
+            <h1>
+                 Playlist
+            </h1>
+            <input type="search">
+            <ol>
+                <li class="flexbox">
+                    <!-- <img src="./img/Master Of Puppets.jpeg" alt="" class="playlist-song-cover"> -->
+                    <p class="playlist-artist">fe</p>
+                    -
+                    <p class="playlist-song">df/p>
+                </li>
+                <li class="flexbox">
+                    <!-- <img src="./img/Master Of Puppets.jpeg" alt="" class="playlist-song-cover"> -->
+                    <p class="playlist-artist">sgv</p>
+                    -
+                    <p class="playlist-song">sdgb</p>
+                </li>
+                <li class="flexbox">
+                    <!-- <img src="./img/Back in Black.jpeg" alt="" class="playlist-song-cover"> -->
+                    <p class="playlist-artist">dsrgb</p>
+                    -
+                    <p class="playlist-song">dht</p>
+                </li>
+            </ol>
         </div>
         <div class="player">
-            <audio controls id="song">
+            <audio id="song">
                 <source src="audio/Orion.mp3" type="audio/mpeg">
             </audio>
-            <div class="song-slider">
-                <input type="range" value="0" id="song-progress" class="">
-                <div class="flexbox">
-                    <span class="song-start">00:00</span>
-                    <span class="song-duration">00:00</span>
-                </div>
-            </div>
             
-            <div class="controls flexbox">
-                <div>
-                    <img src="./svg/skip-to-previous.svg" alt="" id="skip-prev">
+            <img src="" alt="" id="player-img">
+            <div class="overlay"></div>
+            <div class="player-container">
+                <div class="song-details">
+                    <div class="song-cover">
+                        <img src="" alt="" id="song-img">
+                    </div>
+                    <div id="song-name"></div>
+                    <div id="song-artist"></div>
                 </div>
-                <div>
-                    <img src="./svg/play.svg" alt="" id="play">
+                
+                <div class="song-slider">
+                    
+                    <input type="range" value="0" id="song-progress" class="">
+                    <div class="flexbox">
+                        <span class="song-start" id="current-time">00:00</span>
+                        <span class="song-duration" id="song-duration">00:00</span>
+                    </div>
                 </div>
-                <div>
-                    <img src="./svg/skip-to-next.svg" alt="" id="skip-next">
+                
+                <div class="controls flexbox">
+                    <div class="volume-controls">
+                        <img src="./svg/volume-2.svg" alt="" id="volume-img">
+                        <input type="range" name="" id="volume" min="0" max="100" value="90">
+                    </div>
+                    <div class="flexbox play-controls">
+                    <div>
+                        <img src="./svg/skip-to-previous.svg" alt="" id="skip-prev">
+                    </div>
+                    <div class="play-btn paused" id="play">
+                        <div></div>
+                        <div></div>
+                    </div>
+                    <div>
+                        <img src="./svg/skip-to-next.svg" alt="" id="skip-next">
+                    </div>
+                </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <div class="play-btn">
-        <div></div>
-        <div></div>
     </div>
+    <script src="data.js"></script>
     <script src="script.js"></script>
 </body>
 </html>
