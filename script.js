@@ -11,7 +11,7 @@ const songDuration = document.querySelector("#song-duration");
 const volume = document.querySelector("#volume");
 const volumeImg = document.querySelector("#volume-img");
 
-const playBtn = document.querySelector("#play");
+const playBtn = document.querySelector("#play-btn");
 const skipPrevBtn = document.querySelector("#skip-prev");
 const skipNextBtn = document.querySelector("#skip-next");
 
@@ -30,7 +30,6 @@ function setSong(i){
     setInterval(() => {
         songDuration.innerHTML = formatTime(music.duration);
     }, 300)
-    // songDuration.innerHTML = formatTime(music.duration);
 }
 setSong(0)
 
@@ -131,4 +130,51 @@ function muteVolume(){
     music.volume = 0;
     volume.value = 0;
     volumeImg.src = "./svg/volume-0.svg";
+}
+
+const menu = document.querySelector("#menu");
+const playlist = document.querySelectorAll(".playlist-cover");
+const playlistContainer = document.querySelector("#cover-container");
+const songLists = document.querySelectorAll(".playlist-container")
+
+// menu.addEventListener("click", openPlaylist);
+playlist.forEach(cover => {
+    cover.addEventListener("click", openPlaylist);
+});
+function openPlaylist() {
+    
+    menu.classList.add("active-menu");
+    
+    // Get the id of the clicked playlist cover
+    let dataName = this.getAttribute("data-name");
+
+    // Loop through all song lists to find the matching one
+    songLists.forEach(songList => {
+        let id = songList.getAttribute("id");
+        
+        // If the id matches the data-name, show the corresponding playlist
+        if (id === dataName) { 
+            playlistContainer.classList.add("hidden-cover");
+                     
+            songList.classList.add("active-playlist"); // Add class to show the playlist
+        } else {
+            return;
+        }
+    });
+}
+
+menu.addEventListener("click", closePlaylist);
+function closePlaylist(){
+    if(menu.classList.contains("active-menu")){
+        songLists.forEach(songList => {
+            songList.classList.remove("active-playlist"); 
+            }
+        );
+        playlistContainer.classList.remove("hidden-cover");
+        
+        
+    } else{
+        return;
+        
+    }
 }
