@@ -176,8 +176,7 @@ function createPlaylist() {
 
     allPlaylists.push(newPlaylistCover);
     allSongLists.push(newSongList);
-    console.log(allPlaylists);
-    console.log(allSongLists);
+
     
     for(let i = 0; i < allPlaylists.length; i++){
         allPlaylists[i].addEventListener("click", openPlaylist)
@@ -192,9 +191,7 @@ function openPlaylist(){
     addSong.classList.remove("hidden");
     menu.classList.add("active-menu");
     allPlaylists.forEach((playlist) =>{
-        playlist.classList.add("hidden-cover");
-        console.log(playlist);
-        
+        playlist.classList.add("hidden-cover");        
     })
     
     this.nextElementSibling.classList.add("active-playlist");
@@ -219,7 +216,7 @@ function closePlaylist() {
     }
 }
 
-addSong.addEventListener("click", createSongList);
+addSong.addEventListener("click", displaySongList);
 function createSongList(){
     for(let i = 0; i < songs.length; i++){
         let songList = document.createElement("div");
@@ -238,20 +235,48 @@ function createSongList(){
     
     selectedSong.forEach((checkbox) =>{
         checkbox.addEventListener("click", selectASong);
-    })
-    
-    
+    }) 
 }
-
+createSongList()
+function displaySongList(){
+    createSong.classList.remove("hidden")
+}
+let newPlaylist = {}
 function selectASong(){
     this.style.background = "#C8ACD6";
     this.src = "./svg/check.svg";
     let dataId = this.previousElementSibling.firstElementChild.getAttribute("data-id");
     let activePlaylist = document.querySelector(".active-playlist").getAttribute("id");
-    console.log(activePlaylist);
-    
-    let newPlaylist = []
-    // newPlaylist.push
+    if (!newPlaylist[activePlaylist]) {
+        newPlaylist[activePlaylist] = [];
+        newPlaylist[activePlaylist].push(songs[dataId]);
+    } else{
+        newPlaylist[activePlaylist].push(songs[dataId]);
+    }
+    displayPlaylist(activePlaylist)
+}
 
-    
+function displayPlaylist(id){
+    let activePlaylist = document.getElementById(id);
+    activePlaylist.innerHTML = "";
+    for(let i = 0; i < newPlaylist[id].length; i++){
+        let a = i + 1;
+        if(a < 10){
+            a = "0" + a;
+        }
+        activePlaylist.innerHTML += `
+        <div class="song flexbox">
+            <span>${a}</span>
+            <img src="${newPlaylist[id][i].album}" class="playlist-album-cover">
+            <div class="playlist-song-details">
+                <p>${newPlaylist[id][i].name}</p> 
+                <p>${newPlaylist[id][i].artist}</p>
+            </div>
+            <div id="play-song" class="flexbox">
+                <img src="./svg/play.svg" alt="">
+            </div>
+        </div>
+         `
+    }
+
 }
