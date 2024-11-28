@@ -148,6 +148,8 @@ const addPlaylist = document.querySelector("#add-playlist");
 const addSong = document.querySelector("#add-song");
 const input = document.querySelector("#create-new");
 const menu = document.querySelector("#menu");
+const createSong = document.querySelector("#create-song-list");
+
 addPlaylist.addEventListener("click", createPlaylist);
 let allPlaylists = [];
 let allSongLists = [];
@@ -168,6 +170,7 @@ function createPlaylist() {
 
     let newSongList = document.createElement("div");
     newSongList.classList.add("playlist-container");
+    newSongList.setAttribute("id", playlistName);
     newSongList.innerHTML = "This playlist is empty";
     playlistsContainer.appendChild(newSongList);
 
@@ -211,7 +214,44 @@ function closePlaylist() {
         addSong.classList.add("hidden");
         
     } else{
-       return
+       return;
         
     }
+}
+
+addSong.addEventListener("click", createSongList);
+function createSongList(){
+    for(let i = 0; i < songs.length; i++){
+        let songList = document.createElement("div");
+        songList.classList.add("song-list");
+        songList.innerHTML = `
+        <img src="${songs[i].album}" class="playlist-album-cover">
+        <div class="playlist-song-details">
+            <p data-id="${i}">${songs[i].name}</p>
+            <p>${songs[i].artist}</p>
+        </div>
+        <img src="./svg/add-song.svg" class="select-song">
+        </div> `;
+        createSong.appendChild(songList);
+    }
+    let selectedSong = document.querySelectorAll(".select-song");
+    
+    selectedSong.forEach((checkbox) =>{
+        checkbox.addEventListener("click", selectASong);
+    })
+    
+    
+}
+
+function selectASong(){
+    this.style.background = "#C8ACD6";
+    this.src = "./svg/check.svg";
+    let dataId = this.previousElementSibling.firstElementChild.getAttribute("data-id");
+    let activePlaylist = document.querySelector(".active-playlist").getAttribute("id");
+    console.log(activePlaylist);
+    
+    let newPlaylist = []
+    // newPlaylist.push
+
+    
 }

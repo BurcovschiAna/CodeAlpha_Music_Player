@@ -171,6 +171,22 @@
     background-color: var(--light-pink);
     border-radius: 50%;
 }
+.select-song{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+.song-list{
+    display: grid;
+    grid-template-columns: 70px 1fr 40px;
+    margin: 10px 0;
+}
+.song-list p:nth-child(1){
+    font-size: 20px;
+}
+.song-list p:nth-child(2){
+    font-size: 18px;
+}
 .create{
     position: absolute;
     bottom: 20px;
