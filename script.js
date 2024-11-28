@@ -132,49 +132,86 @@ function muteVolume(){
     volumeImg.src = "./svg/volume-0.svg";
 }
 
+// const menu = document.querySelector("#menu");
+// const playlistCovers = document.querySelectorAll(".playlist-cover");
+
+
+
+
+// Add event listeners to existing playlist covers
+
+
+// menu.addEventListener("click", closePlaylist);
+
+const playlistsContainer = document.querySelector("#playlists-container");
+const addPlaylist = document.querySelector("#add-playlist");
+const addSong = document.querySelector("#add-song");
+const input = document.querySelector("#create-new");
 const menu = document.querySelector("#menu");
-const playlist = document.querySelectorAll(".playlist-cover");
-const playlistContainer = document.querySelector("#cover-container");
-const songLists = document.querySelectorAll(".playlist-container")
+addPlaylist.addEventListener("click", createPlaylist);
+let allPlaylists = [];
+let allSongLists = [];
+function createPlaylist() {
+    const playlistName = input.value.trim(); 
 
-// menu.addEventListener("click", openPlaylist);
-playlist.forEach(cover => {
-    cover.addEventListener("click", openPlaylist);
-});
-function openPlaylist() {
-    
-    menu.classList.add("active-menu");
-    
-    // Get the id of the clicked playlist cover
-    let dataName = this.getAttribute("data-name");
+    if (playlistName === "") {
+        alert("Please enter a playlist name."); 
+        return;
+    }
 
-    // Loop through all song lists to find the matching one
-    songLists.forEach(songList => {
-        let id = songList.getAttribute("id");
-        
-        // If the id matches the data-name, show the corresponding playlist
-        if (id === dataName) { 
-            playlistContainer.classList.add("hidden-cover");
-                     
-            songList.classList.add("active-playlist"); // Add class to show the playlist
-        } else {
-            return;
-        }
-    });
+    let newPlaylistCover = document.createElement("div");
+    newPlaylistCover.classList.add("flexbox", "playlist-cover");
+    newPlaylistCover.innerHTML = `<img src="./img/playlist-default.jpg"> 
+    <p>${playlistName}</p>`;
+
+    playlistsContainer.appendChild(newPlaylistCover);
+
+    let newSongList = document.createElement("div");
+    newSongList.classList.add("playlist-container");
+    newSongList.innerHTML = "This playlist is empty";
+    playlistsContainer.appendChild(newSongList);
+
+    allPlaylists.push(newPlaylistCover);
+    allSongLists.push(newSongList);
+    console.log(allPlaylists);
+    console.log(allSongLists);
+    
+    for(let i = 0; i < allPlaylists.length; i++){
+        allPlaylists[i].addEventListener("click", openPlaylist)
+    
+    }
 }
 
-menu.addEventListener("click", closePlaylist);
-function closePlaylist(){
-    if(menu.classList.contains("active-menu")){
-        songLists.forEach(songList => {
-            songList.classList.remove("active-playlist"); 
-            }
-        );
-        playlistContainer.classList.remove("hidden-cover");
+
+
+function openPlaylist(){    
+    addPlaylist.classList.add("hidden");
+    addSong.classList.remove("hidden");
+    menu.classList.add("active-menu");
+    allPlaylists.forEach((playlist) =>{
+        playlist.classList.add("hidden-cover");
+        console.log(playlist);
         
+    })
+    
+    this.nextElementSibling.classList.add("active-playlist");
+}
+menu.addEventListener("click", closePlaylist);
+
+function closePlaylist() {
+    if(menu.classList.contains("active-menu")){
+        allPlaylists.forEach((playlist) => {
+            playlist.classList.remove("hidden-cover");
+        })
+        allSongLists.forEach((songList) => {
+            songList.classList.remove("active-playlist")
+        })
+        menu.classList.remove("active-menu");
+        addPlaylist.classList.remove("hidden");
+        addSong.classList.add("hidden");
         
     } else{
-        return;
+       return
         
     }
 }
