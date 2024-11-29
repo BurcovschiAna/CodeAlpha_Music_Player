@@ -132,145 +132,23 @@ function muteVolume(){
     volumeImg.src = "./svg/volume-0.svg";
 }
 
-// const menu = document.querySelector("#menu");
-// const playlistCovers = document.querySelectorAll(".playlist-cover");
+const playlistContainer = document.querySelector("#playlist-container");
 
 
 
-
-// Add event listeners to existing playlist covers
-
-
-// menu.addEventListener("click", closePlaylist);
-
-const playlistsContainer = document.querySelector("#playlists-container");
-const addPlaylist = document.querySelector("#add-playlist");
-const addSong = document.querySelector("#add-song");
-const input = document.querySelector("#create-new");
-const menu = document.querySelector("#menu");
-const createSong = document.querySelector("#create-song-list");
-
-addPlaylist.addEventListener("click", createPlaylist);
-let allPlaylists = [];
-let allSongLists = [];
-function createPlaylist() {
-    const playlistName = input.value.trim(); 
-
-    if (playlistName === "") {
-        alert("Please enter a playlist name."); 
-        return;
-    }
-
-    let newPlaylistCover = document.createElement("div");
-    newPlaylistCover.classList.add("flexbox", "playlist-cover");
-    newPlaylistCover.innerHTML = `<img src="./img/playlist-default.jpg"> 
-    <p>${playlistName}</p>`;
-
-    playlistsContainer.appendChild(newPlaylistCover);
-
-    let newSongList = document.createElement("div");
-    newSongList.classList.add("playlist-container");
-    newSongList.setAttribute("id", playlistName);
-    newSongList.innerHTML = "This playlist is empty";
-    playlistsContainer.appendChild(newSongList);
-
-    allPlaylists.push(newPlaylistCover);
-    allSongLists.push(newSongList);
-
-    
-    for(let i = 0; i < allPlaylists.length; i++){
-        allPlaylists[i].addEventListener("click", openPlaylist)
-    
-    }
-}
-
-
-
-function openPlaylist(){    
-    addPlaylist.classList.add("hidden");
-    addSong.classList.remove("hidden");
-    menu.classList.add("active-menu");
-    allPlaylists.forEach((playlist) =>{
-        playlist.classList.add("hidden-cover");        
-    })
-    
-    this.nextElementSibling.classList.add("active-playlist");
-}
-menu.addEventListener("click", closePlaylist);
-
-function closePlaylist() {
-    if(menu.classList.contains("active-menu")){
-        allPlaylists.forEach((playlist) => {
-            playlist.classList.remove("hidden-cover");
-        })
-        allSongLists.forEach((songList) => {
-            songList.classList.remove("active-playlist")
-        })
-        menu.classList.remove("active-menu");
-        addPlaylist.classList.remove("hidden");
-        addSong.classList.add("hidden");
-        
-    } else{
-       return;
-        
-    }
-}
-
-addSong.addEventListener("click", displaySongList);
-function createSongList(){
+function displayAllSongs() {
     for(let i = 0; i < songs.length; i++){
-        let songList = document.createElement("div");
-        songList.classList.add("song-list");
-        songList.innerHTML = `
-        <img src="${songs[i].album}" class="playlist-album-cover">
-        <div class="playlist-song-details">
-            <p data-id="${i}">${songs[i].name}</p>
-            <p>${songs[i].artist}</p>
-        </div>
-        <img src="./svg/add-song.svg" class="select-song">
-        </div> `;
-        createSong.appendChild(songList);
-    }
-    let selectedSong = document.querySelectorAll(".select-song");
-    
-    selectedSong.forEach((checkbox) =>{
-        checkbox.addEventListener("click", selectASong);
-    }) 
-}
-createSongList()
-function displaySongList(){
-    createSong.classList.remove("hidden")
-}
-let newPlaylist = {}
-function selectASong(){
-    this.style.background = "#C8ACD6";
-    this.src = "./svg/check.svg";
-    let dataId = this.previousElementSibling.firstElementChild.getAttribute("data-id");
-    let activePlaylist = document.querySelector(".active-playlist").getAttribute("id");
-    if (!newPlaylist[activePlaylist]) {
-        newPlaylist[activePlaylist] = [];
-        newPlaylist[activePlaylist].push(songs[dataId]);
-    } else{
-        newPlaylist[activePlaylist].push(songs[dataId]);
-    }
-    displayPlaylist(activePlaylist)
-}
-
-function displayPlaylist(id){
-    let activePlaylist = document.getElementById(id);
-    activePlaylist.innerHTML = "";
-    for(let i = 0; i < newPlaylist[id].length; i++){
         let a = i + 1;
         if(a < 10){
             a = "0" + a;
         }
-        activePlaylist.innerHTML += `
+        playlistContainer.innerHTML += `
         <div class="song flexbox">
             <span>${a}</span>
-            <img src="${newPlaylist[id][i].album}" class="playlist-album-cover">
+            <img src="${songs[i].album}" class="playlist-album-cover">
             <div class="playlist-song-details">
-                <p>${newPlaylist[id][i].name}</p> 
-                <p>${newPlaylist[id][i].artist}</p>
+                <p>${songs[i].name}</p> 
+                <p>${songs[i].artist}</p>
             </div>
             <div id="play-song" class="flexbox">
                 <img src="./svg/play.svg" alt="">
@@ -278,5 +156,5 @@ function displayPlaylist(id){
         </div>
          `
     }
-
-}
+  }
+  displayAllSongs()
