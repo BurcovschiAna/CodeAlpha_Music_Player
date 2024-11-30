@@ -1,78 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Music Player</title>
-    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8"> <!-- Character encoding for the document -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"> <!-- Responsive design settings -->
+    <title>Music Player</title> <!-- Title of the web page -->
+    <link rel="stylesheet" href="style.css"> <!-- Link to the external CSS stylesheet -->
 </head>
 <body>
-    <div class="wrapper flexbox">
-        <div class="playlist">
+    <div class="wrapper flexbox"> <!-- Main wrapper for the layout, using flexbox for alignment -->
+        <div class="playlist"> <!-- Playlist section -->
             <h1>
-                 Playlist
+                Playlist <!-- Heading for the playlist -->
             </h1>
-            <div class="search flexbox">
-                <input type="text" id="search" autocomplete="off">
-                <img src="./svg/search.svg" alt="" class="search-img">
+            <div class="search flexbox"> <!-- Search bar container -->
+                <input type="text" id="search" autocomplete="off"> <!-- Input field for searching songs -->
+                <img src="./svg/search.svg" alt="" id="search-img"> <!-- Search icon -->
             </div>
-
-            <div id="playlist-container">
+            <div id="playlist-container"> <!-- Container for the playlist items -->
+                <!-- Playlist items will be dynamically added here -->
             </div>
         </div>
-        <div class="player">
-            <audio id="song">
-                <source src="audio/Orion.mp3" type="audio/mpeg">
+        <div class="player"> <!-- Music player section -->
+            <audio id="song"> <!-- Audio element for playing music -->
+                <source src="audio/Orion.mp3" type="audio/mpeg"> <!-- Source of the audio file -->
             </audio>
-            <img src="" alt="" id="player-img">
-            <div class="overlay"></div>
-            <div class="player-container">
-                <div class="credentials flexbox">
-                    <p>Developed by <a href="https://www.linkedin.com/in/ana-burcovschi-2a0b8b271/">Ana Burcovschi</a></p>
-                    <div id="next-song">
+            <img src="" alt="" id="player-img"> <!-- Image for the currently playing song -->
+            <div class="overlay"></div> <!-- Overlay for visual effects -->
+            <div class="player-container"> <!-- Container for player controls and song details -->
+                <div class="credentials flexbox"> <!-- Developer information section -->
+                    <p>Developed by <a href="https://www.linkedin.com/in/ana-burcovschi-2a0b8b271/">Ana Burcovschi</a></p> <!-- Developer name with a link -->
+                    <div id="next-song"> <!-- Placeholder for the next song info -->
                     </div>
                 </div>
                 <div>
-                <div class="song-details">
-                    <div class="song-cover">
-                        <img src="" alt="" id="song-img">
+                    <div class="song-details"> <!-- Container for song details -->
+                        <div class="song-cover"> <!-- Cover image for the song -->
+                            <img src="" alt="" id="song-img"> <!-- Image element for the song cover -->
+                        </div>
+                        <div id="song-name"></div> <!-- Placeholder for the song name -->
+                        <div id="song-artist"></div> <!-- Placeholder for the song artist -->
                     </div>
-                    <div id="song-name"></div>
-                    <div id="song-artist"></div>
-                </div>
-                
-                <div class="song-slider">
                     
-                    <input type="range" value="0" id="song-progress">
-                    <div class="flexbox">
-                        <span class="song-start" id="current-time">00:00</span>
-                        <span class="song-duration" id="song-duration">00:00</span>
+                    <div class="song-slider"> <!-- Slider for controlling song progress -->
+                        <input type="range" value="0" id="song-progress"> <!-- Range input for song progress -->
+                        <div class="flexbox"> <!-- Flexbox for time display -->
+                            <span class="song-start" id="current-time">00:00</span> <!-- Current time of the song -->
+                            <span class="song-duration" id="song-duration">00:00</span> <!-- Total duration of the song -->
+                        </div>
+                    </div>
+                    
+                    <div class="controls flexbox"> <!-- Controls for volume and playback -->
+                        <div class="volume-controls"> <!-- Volume control section -->
+                            <img src="./svg/volume-2.svg" alt="" id="volume-img"> <!-- Volume icon -->
+                            <input type="range" name="" id="volume" min="0" max="100" value="90"> <!-- Range input for volume control -->
+                        </div>
+                        <div class="play-controls"> <!-- Playback controls section -->
+                            <div>
+                                <img src="./svg/skip-to-previous.svg" alt="" id="skip-prev"> <!-- Previous song icon -->
+                            </div>
+                            <div class="play-btn paused" id="play-btn"> <!-- Play button with paused state -->
+                                <div></div> <!-- Play button graphic -->
+                                <div></div> <!-- Play button graphic -->
+                            </div>
+                            <div>
+                                <img src="./svg/skip-to-next.svg" alt="" id="skip-next"> <!-- Next song icon -->
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
-                <div class="controls flexbox">
-                    <div class="volume-controls">
-                        <img src="./svg/volume-2.svg" alt="" id="volume-img">
-                        <input type="range" name="" id="volume" min="0" max="100" value="90">
-                    </div>
-                    <div class="play-controls">
-                        <div>
-                            <img src="./svg/skip-to-previous.svg" alt="" id="skip-prev">
-                        </div>
-                        <div class="play-btn paused" id="play-btn">
-                            <div></div>
-                            <div></div>
-                        </div>
-                        <div>
-                            <img src="./svg/skip-to-next.svg" alt="" id="skip-next">
-                        </div>
-                    </div>
-                </div>
-            </div>
             </div>
         </div>
     </div>
-    <script src="data.js"></script>
-    <script src="script.js"></script>
+    <script src="data.js"></script> <!-- Link to JavaScript file for data handling -->
+    <script src="script.js"></script> <!-- Link to main JavaScript file for functionality -->
 </body>
 </html>
