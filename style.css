@@ -7,7 +7,9 @@
     --light-green1: #345B63;
     --shadow-hover: #FAF4FF;
 }
-
+body{
+    overflow: hidden;
+}
 /* Reset default margins and paddings, set font and color for all elements */
 * {
     margin: 0;

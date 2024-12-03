@@ -78,10 +78,11 @@ function displayAllSongs(songsToDisplay) {
     // Add click event to each song element
     const songElements = document.querySelectorAll(".song");
     songElements.forEach(song => {
+        
         song.addEventListener("click", selectSong);
     });
 }
-
+const songElements = document.querySelectorAll(".song");
 // Function to set the current song based on index
 function setSong(i) {
     progress.value = 0; // Reset progress
@@ -95,10 +96,10 @@ function setSong(i) {
     player.src = song.background; // Set background image
     setInterval(() => {
         songDuration.innerHTML = formatTime(music.duration); // Update song duration
-    }, 300);
-    playState(document.querySelectorAll(".song")[musicIndex]); // Update play state UI
+    }, 300);    
+    // playState(songElements[i]); // Update play state UI
 }
-
+setSong(musicIndex)
 // Function to format time in mm:ss
 function formatTime(time) {
     let min = Math.floor(time / 60);
@@ -168,6 +169,8 @@ function skipPrevSong() {
 
 // Function to play music
 function playMusic() {
+    console.log(songElements[musicIndex]);
+    playState(songElements[musicIndex]); // Update play state UI
     music.play(); // Play the music
     playBtn.classList.remove("paused"); // Update play button state
 }
@@ -211,13 +214,13 @@ function autocomplete() {
 
 // Function to select a song from the playlist
 function selectSong() { 
-    let index = this.getAttribute("data-index"); // Get the index of the selected song
+    let index = parseInt(this.getAttribute("data-index")); // Get the index of the selected song
     setSong(index); // Set the selected song
     playMusic(); // Play the selected song
 }
 
 // Function to update the play state UI
-function playState(parent) {
+function playState(parent) {   
     // Reset play button visibility for all songs
     document.querySelectorAll(".play-song").forEach(element => {
         element.classList.remove("hidden");
