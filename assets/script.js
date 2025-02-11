@@ -32,7 +32,7 @@ $(document).ready(function () {
         });
         $(".song").on("click", function () {
             playingSong($(this))
-            setSong($(this).attr("data-index"));
+            setSong($(this).attr("data-index"));            
             playMusic(); 
         });
     }
@@ -103,7 +103,13 @@ $(document).ready(function () {
         setInterval(() => {
             $("#song-duration").text(formatTime($("#song")[0].duration)); 
         }, 300);
-        $("#next-song").html(`<span>Next:</span> <span class="next-name">${songs[i+1].artist} - ${songs[i+1].name}</span>`)
+        if (+i + 1 < songs.length) {
+            $("#next-song").html(`<span>Next:</span> <span class="next-name">${songs[+i + 1].artist} - ${songs[+i + 1].name}</span>`);
+        } else {
+            $("#next-song").html("")
+        }
+        
+        
     }
     function formatTime(time) {
         let min = Math.floor(time / 60);
