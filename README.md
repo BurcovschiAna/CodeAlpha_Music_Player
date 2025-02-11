@@ -1,5 +1,5 @@
 # CodeAlpha_Music_Player
-<img src="./img/Music player.png" style="width:100%;">
+<img src="./assets/img/Music player.png" style="width:100%;">
 <h3>Introduction</h3>
 <p>This project is a simple yet functional music player application built using HTML, CSS, and jQuery. It allows users to play, pause, and navigate through a playlist of songs while providing an intuitive user interface.</p>
 <h4>Features:</h4>
