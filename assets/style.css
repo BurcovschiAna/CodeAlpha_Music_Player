@@ -230,7 +230,9 @@ body {
     padding: 20px 50px;
 }
 .player-container .song-container{
-    width: 1200px;
+    /* max-width: 1200px;
+    min-width: 1000px; */
+    width: 99%;
     margin: 0 auto;
 }
 .credentials a, .credentials {
@@ -278,7 +280,7 @@ body {
 #song-progress::-webkit-slider-thumb, #volume::-webkit-slider-thumb {
     -webkit-appearance: none;
     background-color: var(--dark-green);
-    box-shadow: -600px 0 0 598px var(--light-green1);
+    box-shadow: -9000px 0 0 8998px var(--light-green1);
     height: 7px;
     width: 7px;
     border-radius: 50%;
