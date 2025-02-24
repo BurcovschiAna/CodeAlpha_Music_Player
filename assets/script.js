@@ -31,8 +31,15 @@ $(document).ready(function () {
             $("#playlist-container").append(card); 
         });
         $(".song").on("click", function () {
-            playingSong($(this))
-            setSong($(this).attr("data-index"));            
+            const clickedIndex = parseFloat($(this).attr("data-index"));
+            musicIndex = displayedSongs.findIndex(song => song.dataIndex === clickedIndex);
+            if (musicIndex === -1) {
+                console.error("Song not found in displayedSongs");
+                return; 
+            }
+
+            playingSong($(this));
+            setSong(musicIndex); 
             playMusic(); 
         });
     }
@@ -60,7 +67,7 @@ $(document).ready(function () {
         },
         select: function(event, ui) {
             const filteredSongs = songs.filter(song => song.name === ui.item.value || song.artist === ui.item.value);
-            displaySongs(filteredSongs);
+            displaySongs(filteredSongs);           
         }
     });
     $("#search").on("input", function() {
@@ -93,7 +100,7 @@ $(document).ready(function () {
 // ! the first song
     function setSong(i) {
         $("#song-progress").val(0)
-        let oneSong = songs[i];
+        let oneSong = displayedSongs[i];;
         $("#song").attr("src", oneSong.path);
         $("#song-name").text(oneSong.name);
         $("#song-artist").text(oneSong.artist)
@@ -102,15 +109,26 @@ $(document).ready(function () {
         $("#player-img").attr("src", oneSong.background);
         setInterval(() => {
             $("#song-duration").text(formatTime($("#song")[0].duration)); 
-        }, 300);
-        if (+i + 1 < songs.length) {
-            $("#next-song").html(`<span>Next:</span> <span class="next-name">${songs[+i + 1].artist} - ${songs[+i + 1].name}</span>`);
-        } else {
-            $("#next-song").html("")
-        }
+        }, 300);        
         
-        
+        displayNextSong(displayedSongs, +i);
     }
+
+function displayNextSong(source, index) { 
+    let nextIndex = index + 1;
+    if (nextIndex >= source.length) {
+        nextIndex = 0; 
+    }
+    let nextSong = source[nextIndex];
+    
+    if (nextSong) {
+        $("#next-song").html(`<span>Next:</span> <span class="next-name">${nextSong.artist} - ${nextSong.name}</span>`);
+    } else {
+        $("#next-song").html(`<span>Next:</span> <span class="next-name">No next song available</span>`);
+    }
+}
+
+
     function formatTime(time) {
         let min = Math.floor(time / 60);
         if (min < 10) {
@@ -139,7 +157,7 @@ $(document).ready(function () {
         if (displayedSongs.length === 0) return; 
         musicIndex = (musicIndex <= 0) ? displayedSongs.length - 1 : musicIndex - 1; 
         playingSong($(`.song[data-index="${displayedSongs[musicIndex].dataIndex}"]`));
-        setSong(displayedSongs[musicIndex].dataIndex); 
+        setSong(musicIndex); 
         playMusic(); 
     });
 
@@ -149,7 +167,7 @@ $(document).ready(function () {
         if (displayedSongs.length === 0) return; 
         musicIndex = (musicIndex >= displayedSongs.length - 1) ? 0 : musicIndex + 1; 
         playingSong($(`.song[data-index="${displayedSongs[musicIndex].dataIndex}"]`));
-        setSong(displayedSongs[musicIndex].dataIndex); 
+        setSong(musicIndex); 
         playMusic(); 
     }
 
