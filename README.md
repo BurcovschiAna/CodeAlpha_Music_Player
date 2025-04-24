@@ -72,3 +72,5 @@
     <p>Toggles between playing and pausing the current song when the play button is clicked.</p>
     <h2>Conclusion</h2>
     <p>This music player application combines various features to provide a simple yet effective way to play and manage music tracks. The use of jQuery simplifies DOM manipulation and event handling, making the code more concise and easier to manage.</p>
+    <h2>Contact</h2>
+    <p>For any inquiries or feedback, feel free to reach out to me at <a href="https://www.linkedin.com/in/ana-burcovschi-2a0b8b271/">LinkedIn</a>.</p>
